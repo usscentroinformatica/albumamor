@@ -1,8 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-// ============================================================
-// CONFIGURACIÓN DE SUPABASE
-// ============================================================
+// 🔥 REEMPLAZA con tus credenciales
 const SUPABASE_URL = 'https://jrmvdcaoonxxlcawbpjh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4ojcaW4thUOspVi_k1W5cQ_noKqSm1m';
 
@@ -21,7 +19,8 @@ export const subirVideoSupabase = async (usuario, file) => {
         const fileExt = file.name.split('.').pop();
         const fileName = `${usuario}_${timestamp}.${fileExt}`;
 
-        const { data, error } = await supabase.storage
+        // ✅ CORREGIDO: eliminado 'data' no usado
+        const { error } = await supabase.storage
             .from('videos')
             .upload(fileName, file, { cacheControl: '3600', upsert: false });
 
